@@ -36,7 +36,7 @@ class ItemValidationTest(FunctionalTest):
         )
 
         # And she can correct it by filling same text in
-        self.browser.find_element_by_id('id_new_item').send_keys('Make Tea')
+        self.browser.find_element_by_id('id_new_item').send_keys('Make tea')
         self.browser.find_element_by_id('id_new_item').send_keys(Keys.ENTER)
         self.wait_for_row_in_list_table('1: Buy milk')
         self.wait_for_row_in_list_table('2: Make tea')
