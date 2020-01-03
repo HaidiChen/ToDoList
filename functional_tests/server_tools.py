@@ -2,8 +2,8 @@ from fabric.api import run
 from fabric.context_managers import settings
 
 def _get_manage_dot_py(host):
-    cmd = '~/sites/{}/virtualenv/bin/python'.format(host)
-    arg = '~/sites/{}/source/manage.py'.format(host)
+    cmd = '/home/pi/sites/{}/virtualenv/bin/python'.format(host)
+    arg = '/home/pi/sites/{}/source/manage.py'.format(host)
     return cmd + ' ' + arg
 
 def reset_database(host):
