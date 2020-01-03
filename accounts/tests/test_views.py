@@ -6,6 +6,13 @@ from accounts.models import Token
 @patch('accounts.views.auth')
 class LoginViewTest(TestCase):
 
+    def test_calls_authenticate_with_uid_from_get_request(self, mock_auth):
+        self.client.get('/accounts/login?token=abcd123')
+        self.assertEqual(
+                mock_auth.authenticate.call_args,
+                call(uid='abcd123')
+                )
+
     def test_does_not_login_if_user_is_not_authenticated(self, mock_auth):
         mock_auth.authenticate.return_value = None
         self.client.get('/accounts/login?token=abcd123')

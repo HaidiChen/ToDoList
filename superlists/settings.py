@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '+2r9tcs*f4qu-gaa$*!hm69x@b&*9!9x4^@#z381r4khx+^t7$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['thatape.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -143,3 +143,9 @@ LOGGING = {
     },
     'root': {'level': 'INFO'},
 }
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'todolist.thatape@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

@@ -30,6 +30,3 @@ def login(request):
         auth.login(request, user)
     return redirect('/')
 
-def logout(request):
-    auth.logout(request)
-    return redirect('/')

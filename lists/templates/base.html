@@ -15,9 +15,11 @@
       <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">Superlists</a>
-          {% if user.is_authenticated %}
-          <p>Logged in as {{ user.email }}</p>
-          <p><a id="id_logout" href="{% url 'logout' %}">Log out</a></p>
+          {% if user.email %}
+          <ul class="nav navbar-nav navbar-right">
+            <li class="navbar-text">Logged in as {{ user.email }}</li>
+            <li><a href="{% url 'logout' %}">Log out</a></li>
+          </ul>
           {% else %}
           <form class="navbar-form navbar-right"
                 method="POST" action="{% url 'send_login_email' %}">
