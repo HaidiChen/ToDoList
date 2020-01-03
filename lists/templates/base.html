@@ -15,12 +15,17 @@
       <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">Superlists</a>
+          {% if user.is_authenticated %}
+          <p>Logged in as {{ user.email }}</p>
+          <p><a id="id_logout" href="{% url 'logout' %}">Log out</a></p>
+          {% else %}
           <form class="navbar-form navbar-right"
                 method="POST" action="{% url 'send_login_email' %}">
             <span>Enter email to log in:</span>
             <input class="form-control" name="email" type="text">
             {% csrf_token %}
           </form>
+          {% endif %}
         </div>
       </nav>
 
