@@ -2,11 +2,14 @@
 Description=Gunicorn sever for SITENAME
 
 [Service]
+Environment=EMAIL_PASSWORD=SEKRIT
 Restart=on-failure
 User=pi
 WorkingDirectory=/home/pi/sites/SITENAME/source
 ExecStart=/home/pi/sites/SITENAME/virtualenv/bin/gunicorn \
             --bind unix:/tmp/SITENAME.socket \
+            --access-logfile ../access.log \
+            --error-logfile ../error.log \
             superlists.wsgi:application
 
 [Install]
