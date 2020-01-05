@@ -32,14 +32,14 @@ class ListPage(object):
                 )
 
     def get_shared_with_list(self):
-        return self.test.browser.find_element_by_css_selector(
+        return self.test.browser.find_elements_by_css_selector(
                 '.list-sharee'
                 )
 
     def share_list_with(self, email):
         self.get_share_box().send_keys(email)
         self.get_share_box().send_keys(Keys.ENTER)
-        self.test.wait_for(lambda: self.assertIn(
+        self.test.wait_for(lambda: self.test.assertIn(
             email,
             [item.text for item in self.get_shared_with_list()]
             ))
