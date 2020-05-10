@@ -18,7 +18,7 @@ class HomePageTest(TestCase):
 
     def test_uses_home_template(self):
         response = self.client.get('/')
-       
+
         self.assertTemplateUsed(response, 'home.html')
 
     def test_home_page_uses_item_form(self):
@@ -173,7 +173,7 @@ class NewListViewUnitTest(unittest.TestCase):
     @patch('lists.views.redirect')
     def test_redirects_to_form_returned_object_if_form_valid(
             self, mock_redirect, mockNewListForm
-    ):
+            ):
         mock_form = mockNewListForm.return_value
         mock_form.is_valid.return_value = True
 
@@ -185,7 +185,7 @@ class NewListViewUnitTest(unittest.TestCase):
     @patch('lists.views.render')
     def test_renders_home_template_with_form_if_form_invalid(
             self, mock_render, mockNewListForm
-    ):
+            ):
         mock_form = mockNewListForm.return_value
         mock_form.is_valid.return_value = False
 
@@ -196,8 +196,8 @@ class NewListViewUnitTest(unittest.TestCase):
                 self.request, 'home.html', {'form': mock_form}
                 )
 
-    def test_does_not_save_if_form_invalid(self, mockNewListForm):
-        mock_form = mockNewListForm.return_value
+        def test_does_not_save_if_form_invalid(self, mockNewListForm):
+            mock_form = mockNewListForm.return_value
         mock_form.is_valid.return_value = False
         new_list(self.request)
         self.assertFalse(mock_form.save.called)

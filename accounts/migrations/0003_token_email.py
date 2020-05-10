@@ -8,14 +8,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accounts', '0002_token'),
-    ]
+            ('accounts', '0002_token'),
+            ]
 
     operations = [
-        migrations.AddField(
-            model_name='token',
-            name='email',
-            field=models.EmailField(default='xx@yy.zz', max_length=254),
-            preserve_default=False,
-        ),
-    ]
+            migrations.AddField(
+                model_name='token',
+                name='email',
+                field=models.EmailField(default='xx@yy.zz', max_length=254),
+                preserve_default=False,
+                ),
+            ]

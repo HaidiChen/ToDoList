@@ -23,13 +23,13 @@ class ItemForm(forms.models.ModelForm):
                 'text': {'required': EMPTY_ITEM_ERROR}
                 }
 
-class NewListForm(ItemForm):
-    
-    def save(self, owner):
-        if owner.is_authenticated:
-            return List.create_new(
-                    first_item_text=self.cleaned_data['text'], owner=owner
-                    )
+        class NewListForm(ItemForm):
+
+            def save(self, owner):
+                if owner.is_authenticated:
+                    return List.create_new(
+                            first_item_text=self.cleaned_data['text'], owner=owner
+                            )
         else:
             return List.create_new(first_item_text=self.cleaned_data['text'])
 

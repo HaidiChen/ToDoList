@@ -44,7 +44,7 @@ def _update_settings(source_folder, site_name):
             settings_path, 
             'ALLOWED_HOSTS = .+$',
             'ALLOWED_HOSTS = ["{}"]'.format(site_name)
-        )
+            )
     secret_key_file = source_folder + '/superlists/secret_key.py'
     if not exists(secret_key_file):
         chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
@@ -57,23 +57,23 @@ def _update_virtualenv(source_folder):
     if not exists(virtualenv_folder + '/bin/pip'):
         run('python3 -m venv {}'.format(virtualenv_folder))
     run('{0}/bin/pip install -r {1}/requirements.txt'.format(virtualenv_folder,
-            source_folder)
+        source_folder)
         )
 
-def _update_static_files(source_folder):
-    run(
-        'cd {0} && ../virtualenv/bin/python '  
-        'manage.py collectstatic --noinput'.format(source_folder)
-        )
+    def _update_static_files(source_folder):
+        run(
+                'cd {0} && ../virtualenv/bin/python '  
+                'manage.py collectstatic --noinput'.format(source_folder)
+                )
 
-def _update_database(source_folder):
-    run(
-            'cd {0} && ../virtualenv/bin/python '
-            ' manage.py migrate --noinput'.format(source_folder)
-            )
+        def _update_database(source_folder):
+            run(
+                    'cd {0} && ../virtualenv/bin/python '
+                    ' manage.py migrate --noinput'.format(source_folder)
+                    )
 
-def _is_first_time_deployment(site_name):
-    systemd_path = '/etc/systemd/system/gunicorn-{}.service'.format(site_name)
+            def _is_first_time_deployment(site_name):
+                systemd_path = '/etc/systemd/system/gunicorn-{}.service'.format(site_name)
     if exists(systemd_path):
         return False
     return True

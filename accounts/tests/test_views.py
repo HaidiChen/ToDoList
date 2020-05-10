@@ -13,8 +13,8 @@ class LoginViewTest(TestCase):
                 call(uid='abcd123')
                 )
 
-    def test_does_not_login_if_user_is_not_authenticated(self, mock_auth):
-        mock_auth.authenticate.return_value = None
+        def test_does_not_login_if_user_is_not_authenticated(self, mock_auth):
+            mock_auth.authenticate.return_value = None
         self.client.get('/accounts/login?token=abcd123')
         self.assertEqual(mock_auth.login.called, False)
 
@@ -25,8 +25,8 @@ class LoginViewTest(TestCase):
                 call(response.wsgi_request, mock_auth.authenticate.return_value)
                 )
 
-    def test_redirects_to_home_page(self, mock_auth):
-        response = self.client.get('/accounts/login?token=abcd123')
+        def test_redirects_to_home_page(self, mock_auth):
+            response = self.client.get('/accounts/login?token=abcd123')
         self.assertRedirects(response, '/')
 
 class SendLoginEmailViewTest(TestCase):
@@ -43,13 +43,13 @@ class SendLoginEmailViewTest(TestCase):
         self.client.post('/accounts/send_login_email', data={
             'email': 'edith@example.com'
             })
-        
+
         token = Token.objects.first()
         expected_url = 'http://testserver/accounts/login?token={}'.format(
                 token.uid)
         (subject, body, from_email, to_list), kwargs = mock_send_mail.call_args
         self.assertIn(expected_url, body)
- 
+
     def test_adds_success_message(self):
         response = self.client.post('/accounts/send_login_email', data={
             'email': 'edith@example.com'

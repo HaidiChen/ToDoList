@@ -9,14 +9,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('lists', '0006_list_owner'),
-    ]
+            migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+            ('lists', '0006_list_owner'),
+            ]
 
     operations = [
-        migrations.AddField(
-            model_name='list',
-            name='shared_with',
-            field=models.ManyToManyField(related_name='shared_lists', to=settings.AUTH_USER_MODEL),
-        ),
-    ]
+            migrations.AddField(
+                model_name='list',
+                name='shared_with',
+                field=models.ManyToManyField(related_name='shared_lists', to=settings.AUTH_USER_MODEL),
+                ),
+            ]

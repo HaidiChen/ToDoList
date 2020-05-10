@@ -45,7 +45,7 @@ class NewListFormTest(unittest.TestCase):
     @patch('lists.forms.List.create_new')
     def test_save_creates_new_list_from_post_data_if_user_not_authenticated(
             self, mock_List_create_new
-    ):
+            ):
         user = Mock(is_authenticated=False)
         form = NewListForm(data={'text': 'new item text'})
         form.is_valid()
@@ -54,10 +54,10 @@ class NewListFormTest(unittest.TestCase):
                 first_item_text='new item text'
                 )
 
-    @patch('lists.forms.List.create_new')
+        @patch('lists.forms.List.create_new')
     def test_save_creates_new_list_with_onwer_if_user_authenticated(
             self, mock_List_create_new
-    ):
+            ):
         user = Mock(is_authenticated=True)
         form = NewListForm(data={'text': 'new item text'})
         form.is_valid()
@@ -66,7 +66,7 @@ class NewListFormTest(unittest.TestCase):
                 first_item_text='new item text', owner=user
                 )
 
-    @patch('lists.forms.List.create_new')
+        @patch('lists.forms.List.create_new')
     def test_save_returns_new_list_object(self, mock_List_create_new):
         user = Mock(is_authenticated=True)
         form = NewListForm(data={'text': 'new item text'})

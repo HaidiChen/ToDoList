@@ -46,8 +46,8 @@ class FunctionalTest(StaticLiveServerTestCase):
             path='/',
             ))
 
-    def setUp(self):
-        self.browser = webdriver.Firefox()
+        def setUp(self):
+            self.browser = webdriver.Firefox()
         self.staging_server = os.environ.get('STAGING_SERVER')
         if self.staging_server:
             self.live_server_url = 'http://' + self.staging_server
@@ -89,7 +89,7 @@ class FunctionalTest(StaticLiveServerTestCase):
                 timestamp=timestamp
                 )
 
-    @wait
+        @wait
     def wait_for(self, fn):
         return fn()
 

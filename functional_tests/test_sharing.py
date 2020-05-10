@@ -25,7 +25,7 @@ class SharingTest(FunctionalTest):
         self.browser = edith_browser
         self.browser.get(self.live_server_url)
         list_page = ListPage(self).add_list_item('Get help')
-        
+
         # she notices a "share this list" option
         share_box = list_page.get_share_box()
 
